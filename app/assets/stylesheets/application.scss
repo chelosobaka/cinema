@@ -1,0 +1,174 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.custom-container{
+  padding:15px 20px;
+}
+.container{
+  background-color: #161819;
+}
+body{
+  background: black;
+  color: #fff;
+  font-family: 'Arimo', sans-serif;
+}
+
+.index-title h1{
+  font-weight: 400;
+  line-height: 60px;
+}
+
+.show-title h1{
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 60px;
+  letter-spacing: 15px;
+}
+
+h1, h2, h3, h4, h5{
+  margin: 0;
+  color:#5ed4ff;
+  font-family: 'Russo One', sans-serif;
+}
+.title-link{
+  margin: 0;
+  color:#5ed4ff !important;
+  font-family: 'Russo One', sans-serif;
+}
+
+a{
+  color: #E36E40 !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: #fff !important;
+  transition: all 0.5s ease-in-out;
+}
+
+p{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+nav{
+  margin-bottom: 40px;
+}
+.navbar-brand{
+  font-weight: bold;
+  color: #E36E40 !important;
+  font-family: 'Russo One', sans-serif;
+}
+
+.nav-link{
+  color: #E36E40 !important;
+  font-family: 'Arimo', sans-serif;
+}
+
+.form-control{
+  color:#fff !important;
+  border: 1px solid #E36E40 !important;
+  background-color: #161819;
+}
+
+input{
+  background-color: #161819 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+::placeholder{
+  font-family: 'Arimo', sans-serif;
+  color: #fff !important;
+}
+
+.navbar-toggler{
+  border: 1px solid #E36E40 !important;
+}
+
+.navbar-toggler:focus, .navbar-toggler:active {
+  outline: none;
+  box-shadow: none;
+  .fa-bars{
+    color: #fff;
+    transition: all 1s ease-in-out;
+  }
+}
+
+.fa-bars{
+  color: #E36E40;
+  transition: all 1s ease-in-out;
+}
+
+
+.movie-card{
+  padding-top:10px;
+  padding-bottom:10px;
+  margin-bottom: 10px;
+}
+
+
+
+.movie_title{
+  margin-bottom: 20px;
+}
+
+.show-poster{
+  margin-bottom: 40px;
+}
+
+table{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  word-spacing: 6px;
+  margin-bottom:15px;
+}
+
+table th{
+  padding-right: 20px;
+  color:#E36E40;
+
+}
+hr{
+  margin: 40px 0 40px 0 !important;
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #E36E40 !important;
+  margin: 1em 0;
+  padding: 0;
+}
+
+.list-group{
+  margin-top: 20px;
+}
+
+.list{
+  color: #fff;
+  text-align: left;
+  font-size: 12pt;
+  position: relative;
+  display: block;
+  padding: 5px 15px;
+  text-decoration: none;
+  }

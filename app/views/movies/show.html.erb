@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="movie_title show-title">
+      <h1><%= @movie.title_ru %></h1>
+      <h5><%= @movie.title_en %></h5>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-5 col-xl-4">
+      <div class="show-poster">
+        <%= image_tag("#{@movie.image_link}",width: "100%", alt: "#{@movie.title_en}")%>
+      </div>
+    </div>
+  <div class="col-sm-12 col-md-12 col-lg-7 col-xl-8">
+    <table class="movie-info">
+      <tbody>
+        <tr>
+          <th scope="row">Страна:</th>
+          <td><%= @movie.country %></td>
+        </tr>
+        <tr>
+          <th scope="row">Жанр:</th>
+          <td><%= link_to "#{@movie.genre}"%></td>
+        </tr>
+        <tr>
+          <th scope="row">Год:</th>
+          <td><%= @movie.year %></td>
+        </tr>
+        <tr>
+          <th scope="row">Режиссёр:</th>
+          <td><%= @movie.producer %></td>
+        </tr>
+        <tr>
+          <th scope="row">В главной роли:</th>
+          <td><%= @movie.acter %></td>
+        </tr>
+        <tr>
+          <th scope="row">Продолжительность:</th>
+          <td class="td2"><%=@movie.duration%> мин. / <%=Time.at(@movie.duration.to_i*60).utc.strftime("%H:%M")%></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <p><%= @movie.description %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div id="yohoho" data-player="moonwalk, czx.to, hdgo, iframe, kodik, allserials" data-kinopoisk='<%= @movie.global_id %>' data-bg="#E36E40"></div>
+    <script src="//yohoho.czx.to/yo.js"></script>   
+  </div>
+</div>

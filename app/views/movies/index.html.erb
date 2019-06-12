@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+    <div class="movie-card">
+      <h2>По жанру:</h2>
+      <div class="list-group">
+        <% @categories.each do|category| %>
+          <%= link_to category.genre.capitalize, movies_path(category: category), class: "list" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+    <% @movies.each do |movie| %>
+     <div class="row movie-card">
+      <div class="col-lg-4">
+        <div>
+          <%= image_tag("#{movie.image_link}", width: "100%")%>
+        </div>
+      </div>
+        <div class="col-lg-8"> 
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <div class="movie_title index-title">
+                <h2><%=link_to "#{movie.title_ru}", movie_path(movie), class:"title-link"%></h2>
+                <h5><%= movie.title_en %></h5>
+              </div>
+            </div>
+          </div>
+          <table class="movie-info">
+            <tbody>
+              <tr>
+                <th scope="row">Страна:</th>
+                <td><%= movie.country %></td>
+              </tr>
+              <tr>
+                <th scope="row">Жанр:</th>
+                <td>
+                  <%=  genre_link(movie)%>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Продолжительность:</th>
+                <td><%= movie.duration%> мин. / <%=Time.at(movie.duration.to_i*60).utc.strftime("%H:%M")%></td>
+              </tr>
+              <tr>
+                <th scope="row">Год:</th>
+                <td><%= movie.year %></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="index_description"><%= movie.description %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
