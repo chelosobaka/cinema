@@ -1,0 +1,31 @@
+<div class="marg_fav">
+    <div class="col-lg-12 localnav_fav">
+        <h1>Ваши закладки</h1>
+    </div>
+
+    <div class="col-lg-12">
+      <% if @current_favorite.line_items.count == 0 %>
+        <div class="nothing">
+          <h2><small>Нету ни одной закладки</small></h2>
+        </div>
+      <%else%>
+      <div class="">
+        <% @favorite.line_items.each do |line_item| %>
+          <div class="row line-item">
+            <div class="col-md-10">
+              <div class="fav_body">
+                <h2><%= link_to "#{line_item.movie.title_ru}", movie_path(line_item.movie) %></h2>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="fav_body trash">
+                <%= link_to '', line_item_path(line_item.movie_id), class: "fa fa-trash", method: :delete %>
+              </div>
+            </div>
+          </div>
+        <%end%>
+      </div>
+    <%end%>
+  </div>
+</div>
+

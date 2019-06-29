@@ -40,7 +40,7 @@ body{
   font-size: 40px;
   font-weight: 400;
   line-height: 60px;
-  letter-spacing: 15px;
+
 }
 
 h1, h2, h3, h4, h5{
@@ -172,3 +172,81 @@ hr{
   padding: 5px 15px;
   text-decoration: none;
   }
+
+.pagination-conteiner{
+  margin-top:40px;
+}
+.pagination{
+  line-height: 12px;
+  float:left;
+  margin-left: 0;
+}
+
+.pagination a, .pagination span.page.current{
+  background: none;
+  box-shadow: none;
+  border:none;
+  text-shadow: none;
+  padding: 0px 5px !important;
+}
+.pagination a:hover{
+  background: none !important;
+}
+.pagination a:active{
+  background: none !important;
+}
+.current{
+  background:none !important;
+}
+
+.bookmark-conteiner{
+  text-align: center;
+  font-size: 40px;
+}
+
+.link-succes{
+  color: green !important;
+}
+.btn-success-background{
+  background-color: green !important;
+  background-image: none !important;
+  border-color: green;
+}
+.btn-success-background:hover{
+  background-color: green !important;
+  background-image: none !important;
+  border-color: green;
+  color: black;
+}
+
+
+.link-danger{
+  color: red !important;
+}
+.btn-danger-background{
+  background-color: red !important;
+}
+.btn-danger-background{
+  background-color: red !important;
+  background-image: none;
+  border-color: red;
+}
+.btn-danger-background:hover{
+  background-color: red !important;
+  background-image: none !important;
+  border-color: red;
+  color: black;
+}
+.caption{
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.line-item{
+  margin-top:15px;
+  margin-bot:15px;
+}
+.trash{
+  font-size:25px;
+}

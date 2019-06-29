@@ -15,15 +15,39 @@
       <div class="col-lg-4">
         <div>
           <%= image_tag("#{movie.image_link}", width: "100%")%>
+
+          <div class="caption">
+            <%= link_to like_movie_path(movie), class: "like", method: :put, remote: true do %>
+              <button type="button" class="btn btn-success btn-success-background" aria-label="Left Align">
+                <span class="fa fa-thumbs-up" aria-hidden="true"></span>
+                <span class="badge"><%= movie.get_upvotes.size + movie.like %></span>
+              </button>
+            <% end %>
+
+            <%= link_to unlike_movie_path(movie), class: "like", method: :put , remote: true do %>
+              <button type="button" class="btn btn-danger btn-danger-background" aria-label="Left Align">
+                <span class="fa fa-thumbs-down" aria-hidden="true"></span>
+                <span class="badge"><%= movie.get_downvotes.size + movie.dislike %></span>
+              </button>
+            <% end %>
+          </div>
         </div>
       </div>
         <div class="col-lg-8"> 
           <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="col-sm-10 col-md-10 col-lg-10 col-xl-10">
               <div class="movie_title index-title">
                 <h2><%=link_to "#{movie.title_ru}", movie_path(movie), class:"title-link"%></h2>
                 <h5><%= movie.title_en %></h5>
               </div>
+            </div>
+            <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 bookmark-conteiner">
+
+              <% if fav_include_movie?(movie) %>
+                <%= link_to "", line_item_path(movie), method: :delete, class: "fa fa-minus bookmark link-danger" %>
+               <% else %>
+                <%= link_to "", line_items_path(movie_id: movie), method: :post, class: "fa fa-plus bookmark link-succes" %>
+               <%end%>
             </div>
           </div>
           <table class="movie-info">
@@ -34,9 +58,7 @@
               </tr>
               <tr>
                 <th scope="row">Жанр:</th>
-                <td>
-                  <%=  genre_link(movie)%>
-                </td>
+                <td><%= genre_link(movie) %></td>
               </tr>
               <tr>
                 <th scope="row">Продолжительность:</th>
@@ -51,6 +73,14 @@
           <p class="index_description"><%= movie.description %></p>
         </div>
       </div>
-    <% end %>
-  </div>
 
+    <% end %>
+    <div class="pagination-conteiner">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+          <%= paginate @movies %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

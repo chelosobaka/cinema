@@ -2,6 +2,13 @@ class Movie < ApplicationRecord
   before_save :parse_kinopoisk, on: :create
   has_and_belongs_to_many :categories, dependent: :destroy
 
+  has_many :line_items, dependent: :destroy
+  has_many :favorites, through: :line_items
+
+  validates :global_id, uniqueness: true
+
+  acts_as_votable
+
   private
     def parse_kinopoisk
       film = KpApi::Film.new(self.global_id)
