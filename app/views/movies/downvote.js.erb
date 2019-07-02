@@ -1,0 +1,4 @@
+$('#dislike-<%= @movie.id %>').bind('ajax:success', function() {
+   $('#down-<%= @movie.id %>').html('<%=escape_javascript (@movie.get_downvotes.size + @movie.dislike).to_s %>');
+   $('#up-<%= @movie.id %>').html('<%=escape_javascript (@movie.get_upvotes.size + @movie.like).to_s %>');
+});

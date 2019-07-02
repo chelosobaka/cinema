@@ -10,6 +10,7 @@ class Movie < ApplicationRecord
   acts_as_votable
 
   private
+
     def parse_kinopoisk
       film = KpApi::Film.new(self.global_id)
       acter_arr = Array.new

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+  <div class="col-sm-5 col-md-4 col-lg-3 col-xl-3">
     <div class="movie-card">
       <h2>По жанру:</h2>
       <div class="list-group">
@@ -9,7 +9,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-9 col-md-9 col-lg-9 col-xl-9">
+  <div class="col-sm-7 col-md-8 col-lg-9 col-xl-9">
     <% @movies.each do |movie| %>
      <div class="row movie-card">
       <div class="col-lg-4">
@@ -17,20 +17,38 @@
           <%= image_tag("#{movie.image_link}", width: "100%")%>
 
           <div class="caption">
-            <%= link_to like_movie_path(movie), class: "like", method: :put, remote: true do %>
+            <%= link_to like_movie_path(movie), class: "like", id: "like-#{movie.id}", method: :put, remote: true do %>
               <button type="button" class="btn btn-success btn-success-background" aria-label="Left Align">
                 <span class="fa fa-thumbs-up" aria-hidden="true"></span>
-                <span class="badge"><%= movie.get_upvotes.size + movie.like %></span>
+                <span class="badge" id="up-<%= movie.id %>"><%= movie.get_upvotes.size + movie.like %></span>
               </button>
             <% end %>
 
-            <%= link_to unlike_movie_path(movie), class: "like", method: :put , remote: true do %>
+            <%= link_to dislike_movie_path(movie), class: "dislike", id: "dislike-#{movie.id}", method: :put , remote: true do %>
               <button type="button" class="btn btn-danger btn-danger-background" aria-label="Left Align">
                 <span class="fa fa-thumbs-down" aria-hidden="true"></span>
-                <span class="badge"><%= movie.get_downvotes.size + movie.dislike %></span>
+                <span class="badge" id="down-<%= movie.id %>"><%= movie.get_downvotes.size + movie.dislike %></span>
               </button>
             <% end %>
           </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
       </div>
         <div class="col-lg-8"> 
@@ -73,7 +91,7 @@
           <p class="index_description"><%= movie.description %></p>
         </div>
       </div>
-
+      <hr>
     <% end %>
     <div class="pagination-conteiner">
       <div class="row">

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :movies, only: [:index, :show] do
     member do
       put "like" => "movies#upvote"
-      put "unlike" => "movies#downvote"
+      put "dislike" => "movies#downvote"
     end
   end
 

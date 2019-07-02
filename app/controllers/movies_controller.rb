@@ -22,7 +22,11 @@ class MoviesController < ApplicationController
       @session = VoterSession.create(session_id: request.session_options[:id])
     end
     @movie.upvote_by @session
-    redirect_to movies_path
+      respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @movie.liked_count } }
+      format.js   { render :layout => false }
+    end
   end
 
   def downvote
@@ -31,7 +35,11 @@ class MoviesController < ApplicationController
       @session = VoterSession.create(session_id: request.session_options[:id])
     end
     @movie.downvote_by @session
-    redirect_to movies_path
+      respond_to do |format|
+        format.html {redirect_to :back }
+        format.json { render json: { count: @movie.disliked_count } }
+        format.js   { render :layout => false }
+      end
   end
 
   private
