@@ -1,0 +1,15 @@
+<div class="caption">
+  <%= link_to like_movie_path(movie), class: "like", id: "like-#{movie.id}", method: :put, remote: true do %>
+      <button type="button" class="btn btn-success btn-up-background" aria-label="Left Align">
+      <span class="fa fa-thumbs-up" aria-hidden="true"></span>
+      <span class="badge" id="up-<%= movie.id %>"><%= movie.get_upvotes.size + movie.like %></span>
+    </button>
+  <% end %>
+
+  <%= link_to dislike_movie_path(movie), class: "like", id: "dislike-#{movie.id}", method: :put , remote: true do %>
+      <button type="button" class="btn btn-danger btn-down-background" aria-label="Left Align">
+      <span class="fa fa-thumbs-down" aria-hidden="true"></span>
+      <span class="badge" id="down-<%= movie.id %>"><%= movie.get_downvotes.size + movie.dislike %></span>
+    </button>
+  <% end %>
+</div>

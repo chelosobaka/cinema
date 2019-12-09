@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
     def current_favorite
       if session[:favorite_id]
-        favorite = Favorite.find_by(:id => session[:favorite_id])
+        favorite = ::Favorite.find_by(:id => session[:favorite_id])
         if favorite.present?
           @current_favorite = favorite
         else

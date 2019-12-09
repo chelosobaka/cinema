@@ -10,9 +10,8 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-
-<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
   </head>
 
   <body>
@@ -30,9 +29,7 @@
                 <%= link_to "Закладки (#{@current_favorite.line_items.count})", favorite_path(@current_favorite), class:"nav-link" %>
               </li>
             </ul>
-            <form class="form-inline my-2 my-md-0">
-              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </form>
+            <%= render 'search/form' %>
           </div>
         </nav>
       </div>

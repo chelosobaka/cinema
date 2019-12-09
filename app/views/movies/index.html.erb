@@ -15,40 +15,7 @@
       <div class="col-lg-4">
         <div>
           <%= image_tag("#{movie.image_link}", width: "100%")%>
-
-          <div class="caption">
-            <%= link_to like_movie_path(movie), class: "like", id: "like-#{movie.id}", method: :put, remote: true do %>
-              <button type="button" class="btn btn-success btn-success-background" aria-label="Left Align">
-                <span class="fa fa-thumbs-up" aria-hidden="true"></span>
-                <span class="badge" id="up-<%= movie.id %>"><%= movie.get_upvotes.size + movie.like %></span>
-              </button>
-            <% end %>
-
-            <%= link_to dislike_movie_path(movie), class: "dislike", id: "dislike-#{movie.id}", method: :put , remote: true do %>
-              <button type="button" class="btn btn-danger btn-danger-background" aria-label="Left Align">
-                <span class="fa fa-thumbs-down" aria-hidden="true"></span>
-                <span class="badge" id="down-<%= movie.id %>"><%= movie.get_downvotes.size + movie.dislike %></span>
-              </button>
-            <% end %>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          <%= render partial: 'movies/votes', :locals => {:movie => movie, :session => @session} %>
         </div>
       </div>
         <div class="col-lg-8"> 

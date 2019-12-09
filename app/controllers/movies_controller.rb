@@ -1,12 +1,24 @@
 class MoviesController < ApplicationController
+
   before_action :set_movie, only: [:show, :upvote, :downvote]
 
   def index
-    if params[:category].blank?
+
+    if params[:category].blank? && params[:search].blank?
       @movies = Movie.all.page(params[:page]).per(10)
+    elsif params[:search].present?
+      search = params[:search]
+      movies = Movie.where("title_ru LIKE ? OR title_ru LIKE ? OR lower(title_en) LIKE ?",
+        "%#{search.capitalize}%", "%#{search.downcase}%", "%#{search.downcase}%")
+      @movies = movies.page(params[:page]).per(10)
     else
       @category = Category.find(params[:category])
       @movies = @category.movies.page(params[:page]).per(10)
+    end
+
+    @session = VoterSession.find_by(session_id: request.session_options[:id])
+    if @session == nil
+      @session = VoterSession.create(session_id: request.session_options[:id])
     end
 
     @categories = Category.all
@@ -35,11 +47,11 @@ class MoviesController < ApplicationController
       @session = VoterSession.create(session_id: request.session_options[:id])
     end
     @movie.downvote_by @session
-      respond_to do |format|
-        format.html {redirect_to :back }
-        format.json { render json: { count: @movie.disliked_count } }
-        format.js   { render :layout => false }
-      end
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @movie.disliked_count } }
+      format.js   { render :layout => false }
+    end
   end
 
   private

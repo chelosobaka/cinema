@@ -211,6 +211,7 @@ hr{
   background-color: green !important;
   background-image: none !important;
   border-color: green;
+  box-shadow: none !important;
 }
 .btn-success-background:hover{
   background-color: green !important;
@@ -219,14 +220,42 @@ hr{
   color: black;
 }
 
+.btn-up-background{
+  background-color: #161819 !important;
+  background-image: none !important;
+  border: 2px solid green;
+  box-shadow: none !important;
+  color: green;
+}
+
+.btn-up-background:hover{
+  background-color: green !important;
+  background-image: none !important;
+  border-color: green;
+  box-shadow: none !important;
+}
+
+.btn-down-background{
+  background-color: #161819 !important;
+  background-image: none !important;
+  border: 2px solid red;
+  box-shadow: none !important;
+  color: red;
+}
+
+.btn-down-background:hover{
+  background-color: red !important;
+  background-image: none !important;
+  border-color: red;
+  box-shadow: none !important;
+}
 
 .link-danger{
   color: red !important;
 }
+
 .btn-danger-background{
-  background-color: red !important;
-}
-.btn-danger-background{
+  box-shadow: none !important;
   background-color: red !important;
   background-image: none;
   border-color: red;
@@ -237,6 +266,13 @@ hr{
   border-color: red;
   color: black;
 }
+.btn-voted-background{
+  box-shadow: none !important;
+  background-color: #5ed4ff !important;
+  background-image: none;
+  border-color: #5ed4ff;
+}
+
 .caption{
   margin-top: 15px;
   margin-left: auto;
