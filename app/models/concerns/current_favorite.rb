@@ -14,15 +14,17 @@ module CurrentFavorite
 
 
   def set_user_favorite
-    if session[:favorite]
-      puts "if session #{session[:favorite]}"
+    if session[:favorite] #если есть сессия
       if current_user.favorite.nil?
-        puts "step 1."
+#и отсутсвует у текущего пользователя закладки,
+#присвоить закладки из сессии пользователю и обнулить сессию
         @favorite = Favorite.find(session[:favorite])
         session[:favorite] = nil
         @favorite.update(user: current_user)
       else
-        puts "step 2."
+#если у пользователя уже создана закладка,
+#перенести закладки из сессии в закладки пользователя,
+#удалить анонимную закладку и обнулить сессию
         session_favorite = Favorite.find(session[:favorite])
         @favorite = Favorite.find_by(user: current_user)
         session_favorite.line_items.each do |line_item|
@@ -32,14 +34,11 @@ module CurrentFavorite
         session_favorite.destroy
         @favorite
       end
-    else
-      puts "if session nil"
-      if current_user.favorite.nil?
-        puts "step 3."
+    else #если сессия отсутвует
+      if current_user.favorite.nil?#на не предвиденный случай
         @favorite = current_user.build_favorite
         @favorite.save
       else
-        puts "step 4."
         @favorite = Favorite.find_by(user: current_user)
       end
     end

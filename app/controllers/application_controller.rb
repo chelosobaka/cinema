@@ -2,11 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include CurrentFavorite
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_favorite
-
-  def after_database_authentication
-    set_user_favorite
-  end
+  before_action :set_favorite, if: Proc.new {|c| request.get?}
 
   def authenticate_active_admin_user!
     authenticate_user!
