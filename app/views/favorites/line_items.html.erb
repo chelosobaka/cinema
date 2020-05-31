@@ -1,16 +1,4 @@
-<div class="marg_fav">
-    <div class="col-lg-12 localnav_fav">
-        <h1>Ваши закладки</h1>
-    </div>
 
-    <div class="col-lg-12">
-      <% if @favorite.line_items.count == 0 %>
-        <div class="nothing">
-          <h2><small>Нету ни одной закладки</small></h2>
-        </div>
-      <%else%>
-      <div class="">
-        <% @favorite.line_items.each do |line_item| %>
           <div class="row line-item">
             <div class="col-md-10">
               <div class="fav_body">
@@ -23,9 +11,3 @@
               </div>
             </div>
           </div>
-        <%end%>
-      </div>
-    <%end%>
-  </div>
-</div>
-

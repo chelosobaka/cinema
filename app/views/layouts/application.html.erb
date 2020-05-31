@@ -26,10 +26,31 @@
           <div class="collapse navbar-collapse" id="navbarsExample09">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <%= link_to "Закладки (#{@current_favorite.line_items.count})", favorite_path(@current_favorite), class:"nav-link" %>
+                <%= link_to "Закладки (#{@favorite.line_items.count})", favorite_path(@favorite), class:"nav-link" %>
               </li>
             </ul>
             <%= render 'search/form' %>
+             <% if user_signed_in? %>
+                <span class="navbar-brand navbar-username"><%= current_user.username%></span>
+                  <span class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"></a>
+                        <ul class="dropdown-menu customdrop customnav">
+                            <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
+                            <li><%= link_to 'Изменить профиль', edit_user_registration_path %> </li>
+                            <% if current_user.admin %>
+                              <li><%= link_to 'Панель админа', admin_root_path %>
+                            <% end %>
+                        </ul>
+                    </span>
+                <% else %>
+                    <span class="dropdown customnav navbar-username">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Вход <b class="caret"></b></a>
+                        <ul class="dropdown-menu customdrop customnav">
+                            <li><%= link_to 'Войти', new_user_session_path %> </li>
+                            <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
+                        </ul>
+                    </span>
+                <% end %>
           </div>
         </nav>
       </div>

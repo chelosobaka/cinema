@@ -28,7 +28,7 @@
             </div>
             <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2 bookmark-conteiner">
 
-              <% if fav_include_movie?(movie) %>
+              <% if favorite_include_movie?(movie) %>
                 <%= link_to "", line_item_path(movie), method: :delete, class: "fa fa-minus bookmark link-danger" %>
                <% else %>
                 <%= link_to "", line_items_path(movie_id: movie), method: :post, class: "fa fa-plus bookmark link-succes" %>

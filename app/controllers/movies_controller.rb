@@ -16,9 +16,9 @@ class MoviesController < ApplicationController
       @movies = @category.movies.page(params[:page]).per(10)
     end
 
-    @session = VoterSession.find_by(session_id: request.session_options[:id])
+    @session = VoterSession.find_by(session_id: request.session_options[:id].to_s)
     if @session == nil
-      @session = VoterSession.create(session_id: request.session_options[:id])
+      @session = VoterSession.create(session_id: request.session_options[:id].to_s)
     end
 
     @categories = Category.all
@@ -29,9 +29,9 @@ class MoviesController < ApplicationController
   end
 
   def upvote
-    @session = VoterSession.find_by(session_id: request.session_options[:id])
+    @session = VoterSession.find_by(session_id: request.session_options[:id].to_s)
     if @session == nil
-      @session = VoterSession.create(session_id: request.session_options[:id])
+      @session = VoterSession.create(session_id: request.session_options[:id].to_s)
     end
     @movie.upvote_by @session
       respond_to do |format|
@@ -42,9 +42,9 @@ class MoviesController < ApplicationController
   end
 
   def downvote
-    @session = VoterSession.find_by(session_id: request.session_options[:id])
+    @session = VoterSession.find_by(session_id: request.session_options[:id].to_s)
     if @session == nil
-      @session = VoterSession.create(session_id: request.session_options[:id])
+      @session = VoterSession.create(session_id: request.session_options[:id].to_s)
     end
     @movie.downvote_by @session
     respond_to do |format|

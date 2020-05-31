@@ -1,16 +1,16 @@
-class CreateActiveAdminComments < ActiveRecord::Migration[5.2]
+class CreateUserComments < ActiveRecord::Migration[5.2]
   def self.up
-    create_table :active_admin_comments do |t|
+    create_table :user_comments do |t|
       t.string :namespace
       t.text   :body
       t.references :resource, polymorphic: true
       t.references :author, polymorphic: true
       t.timestamps
     end
-    add_index :active_admin_comments, [:namespace]
+    add_index :user_comments, [:namespace]
   end
 
   def self.down
-    drop_table :active_admin_comments
+    drop_table :user_comments
   end
 end

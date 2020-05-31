@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
-  root "movies#index"
-  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users
+  #devise_scope :user do
+    #get '/users/sign_out' => 'devise/sessions#destroy'
+  #end
   ActiveAdmin.routes(self)
+
+
+  root "movies#index"
   resources :movies, only: [:index, :show] do
     member do
       put "like" => "movies#upvote"

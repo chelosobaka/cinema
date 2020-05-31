@@ -74,7 +74,6 @@ nav{
   margin-bottom: 40px;
 }
 .navbar-brand{
-  font-weight: bold;
   color: #E36E40 !important;
   font-family: 'Russo One', sans-serif;
 }
@@ -282,8 +281,21 @@ hr{
 }
 .line-item{
   margin-top:15px;
-  margin-bot:15px;
+  margin-bottom:15px;
 }
 .trash{
   font-size:25px;
+}
+
+.navbar-username{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.dropdown-menu{
+  background-color: #161819;
+  border: 1px solid #e36e40 !important;
+  padding-left: 10px;
+  padding-right: 10px;
+  white-space: nowrap;
+
 }

@@ -1,22 +1,28 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  include CurrentFavorite
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_favorite
 
-  before_action :current_favorite
+  def after_database_authentication
+    set_user_favorite
+  end
 
-  private
-    def current_favorite
-      if session[:favorite_id]
-        favorite = ::Favorite.find_by(:id => session[:favorite_id])
-        if favorite.present?
-          @current_favorite = favorite
-        else
-          session[:favorite_id] = nil
-        end
-      end
-
-      if session[:favorite_id] == nil
-        @current_favorite = Favorite.create
-        session[:favorite_id] = @current_favorite.id
-      end
+  def authenticate_active_admin_user!
+    authenticate_user!
+    unless current_user.admin?
+      flash[:alert] = "Unauthorized Access!"
+      redirect_to root_path
     end
+  end
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+  end
+
+
 end
+
