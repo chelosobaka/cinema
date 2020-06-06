@@ -69,6 +69,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jquery-rails'
+gem 'popper_js'
+gem 'tether-rails'
 gem 'bootstrap', '~> 4.3.1'
 gem 'nokogiri'
 gem 'activeadmin'
@@ -77,3 +79,4 @@ gem 'kaminari'
 gem 'rails-i18n'
 gem 'acts_as_votable' , '~> 0.12.0'
 #gem 'kp_api'
+gem 'simple_form'

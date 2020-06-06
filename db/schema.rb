@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_014635) do
+ActiveRecord::Schema.define(version: 2020_06_01_200742) do
 
   create_table "categories", force: :cascade do |t|
     t.string "genre"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2020_04_24_014635) do
     t.integer "favorite_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "movies", force: :cascade do |t|

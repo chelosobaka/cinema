@@ -1,0 +1,11 @@
+<div id="chatbox">
+	<% @messages.each do|message| %>
+		<%= render 'messages/message', message: message %>
+	<% end %>
+</div>
+<%= form_with model: @message, remote: true do |f| %>
+	<%= f.text_field :body, placeholder: "Say something...", class: "form-controll" %>
+	<div class="input-group-append">
+		<%= f.submit "send" %>
+	</div>
+<% end %>
