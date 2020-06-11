@@ -56,15 +56,6 @@ class MoviesController < ApplicationController
 
   def set_rendom_movies
     @recommendation = []
-    @recommendation << Movie.find(3)
-    @recommendation << Movie.find(3)
-    @recommendation << Movie.find(3)
-    @recommendation << Movie.find(3)
-    @recommendation << Movie.find(4)
-    @recommendation << Movie.find(4)
-    @recommendation << Movie.find(4)
-    @recommendation << Movie.find(4)
-=begin
     i = 0
     r = 0
     7.times do
@@ -73,21 +64,18 @@ class MoviesController < ApplicationController
       end
       #if @movie.categories[i]
       random_movie = Movie.find(@movie.categories[i].movies.pluck(:id).sample)
-      #if @recommendation != nil
-        if @recommendation.include?(random_movie) || (random_movie == @movie)
-          if r <= 7
-            r += 1
-            redo
-          else
-            break
-          end
-        #end
+      if @recommendation.include?(random_movie) || (random_movie == @movie)
+        if r <= 7
+          r += 1
+          redo
+        else
+          break
+        end
       else
         @recommendation << random_movie
       end
       i += 1
     end
-=end
   end
 
   private
