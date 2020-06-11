@@ -48,8 +48,20 @@
 </div>
 
 <div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-    <div id="yohoho" data-player="moonwalk, czx.to, hdgo, iframe, kodik, allserials" data-kinopoisk='<%= @movie.global_id %>' data-bg="#E36E40"></div>
-    <script src="//yohoho.czx.to/yo.js"></script>   
+  <div class="col-sm-12 col-md-12 col-lg-5 col-xl-4">
+    <h3>Советуем посмотреть:</h3>
+    <% @recommendation.each do |movie| %>
+    <ul class="recommend-ul">
+      <li class=recommend-li>
+      <%= link_to "#{movie.title_ru} (#{movie.year} г.)", movie_path(movie) %>
+    </li>
+    </ul>
+    <% end %>
+
+  </div>
+  <div class="col-sm-12 col-md-12 col-lg-7 col-xl-8">
+    <div class="bkg-videoplayer">
+      <iframe src="https://63.tvmovies.in/PwUgndLBDUPr?kp_id=<%=@movie.global_id%>" width="640" height="480" frameborder="0" allowfullscreen class="videoplayer"></iframe>
+    </div>
   </div>
 </div>

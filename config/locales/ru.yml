@@ -6,3 +6,43 @@ ru:
       previous: "&lsaquo; Назад"
       next: "Далее &rsaquo;"
       truncate: "&hellip;"
+  activerecord:
+    models:
+      user: "Пользователь"
+      movie: "Фильм"
+      favorite: "Любимый"
+      category: "Категория"
+    attributes:
+      user:
+        username: "Отображаемое имя"
+        blocked: "Заблокирован"
+        admin: "Администратор"
+        created_at: "Дата создания"
+        updated_at: "Дата обновления"
+      movie:
+        categories: "Категория"
+        global_id: "Глобальный ID"
+        title_ru: "Название на русском"
+        title_en: "Название на английском"
+        country: "Страна"
+        genre: "Жанр"
+        duration: "Продолжительность"
+        description: "Описание"
+        producer: "Режиссёр"
+        acter: "Актёр"
+        year: "Год"
+        image_link: "Ссылка на постер"
+        video_link: "Ссылка на видео"
+        trailer_link: "Ссылка на трейлер"
+        like: "Лайк"
+        dislike: "Дизлайк"
+        created_at: "Дата создания"
+        updated_at: "Дата обновления"
+      category:
+        genre: "Жанр"
+        created_at: "Дата создания"
+        updated_at: "Дата обновления"
+      favorite:
+        user: "Пользователь"
+        created_at: "Дата создания"
+        updated_at: "Дата обновления"

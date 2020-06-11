@@ -2,8 +2,8 @@ class MoviesController < ApplicationController
 
   before_action :set_movie, only: [:show, :upvote, :downvote]
 
-  def index
 
+  def index
     if params[:category].blank? && params[:search].blank?
       @movies = Movie.all.page(params[:page]).per(10)
     elsif params[:search].present?
@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-
+    set_rendom_movies
   end
 
   def upvote
@@ -52,6 +52,42 @@ class MoviesController < ApplicationController
       format.json { render json: { count: @movie.disliked_count } }
       format.js   { render :layout => false }
     end
+  end
+
+  def set_rendom_movies
+    @recommendation = []
+    @recommendation << Movie.find(3)
+    @recommendation << Movie.find(3)
+    @recommendation << Movie.find(3)
+    @recommendation << Movie.find(3)
+    @recommendation << Movie.find(4)
+    @recommendation << Movie.find(4)
+    @recommendation << Movie.find(4)
+    @recommendation << Movie.find(4)
+=begin
+    i = 0
+    r = 0
+    7.times do
+      if i == @movie.categories.size-1
+        i = 0
+      end
+      #if @movie.categories[i]
+      random_movie = Movie.find(@movie.categories[i].movies.pluck(:id).sample)
+      #if @recommendation != nil
+        if @recommendation.include?(random_movie) || (random_movie == @movie)
+          if r <= 7
+            r += 1
+            redo
+          else
+            break
+          end
+        #end
+      else
+        @recommendation << random_movie
+      end
+      i += 1
+    end
+=end
   end
 
   private

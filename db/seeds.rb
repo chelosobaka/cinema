@@ -27,4 +27,4 @@ Category.create!([
   {genre: "фантастика"},
   {genre: "фентези"},
 ])
-#User.create!(username: 'admin', email: 'admin@example.com', password: 'password', password_confirmation: 'password', blocked: false, admin: true) if Rails.env.development?
+User.create!(username: 'admin', email: 'admin@example.com', password: 'password', password_confirmation: 'password', blocked: false, admin: true) if Rails.env.development?

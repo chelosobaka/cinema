@@ -28,6 +28,9 @@
               <li class="nav-item">
                 <%= link_to "Закладки (#{@favorite.line_items.count})", favorite_path(@favorite), class:"nav-link" %>
               </li>
+              <li class="nav-item">
+                <%= link_to "Чат киноманов", chatter_path, class:"nav-link" %>
+              </li>
             </ul>
             <%= render 'search/form' %>
              <% if user_signed_in? %>
@@ -35,11 +38,11 @@
                   <span class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"></a>
                         <ul class="dropdown-menu customdrop customnav">
-                            <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
-                            <li><%= link_to 'Изменить профиль', edit_user_registration_path %> </li>
-                            <% if current_user.admin %>
-                              <li><%= link_to 'Панель админа', admin_root_path %>
-                            <% end %>
+                          <li><%= link_to 'Выйти', destroy_user_session_path, :method => :delete %></li>
+                          <li><%= link_to 'Изменить профиль', edit_user_registration_path %> </li>
+                          <% if current_user.admin %>
+                            <li><%= link_to 'Панель админа', admin_root_path %>
+                          <% end %>
                         </ul>
                     </span>
                 <% else %>
@@ -56,6 +59,7 @@
       </div>
     </header>
     <div class="container custom-container">
+      <%= render 'layouts/flash' %>
       <%= yield %>
     </div>
   </body>

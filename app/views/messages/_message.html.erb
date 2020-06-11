@@ -1,3 +1,4 @@
-<div class="well">
-	[<%=message.created_at.strftime("%d.%m.%y %M:%H")%>] <%=message.user.username%> <%=message.body%>
+<div class="row message-bubble">
+  <span class="username-chat"><%=message.user.username%>:</span>
+    <span class="body-chat"><%=message.body%></span>
 </div>

@@ -16,9 +16,11 @@ class Movie < ApplicationRecord
   validates :year, presence: true
 
   acts_as_votable
-  puts self.to_s
+
+
 
   def add_categories_to_movie
+    self.genre.downcase!
     self.genre.split(", ").each do |kinopoisk_genre|
       category = Category.find_by(genre: kinopoisk_genre)
       if category.blank?

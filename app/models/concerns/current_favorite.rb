@@ -31,6 +31,7 @@ module CurrentFavorite
           line_item.update(favorite: @favorite)
         end
         session[:favorite] = nil
+        session_favorite.line_items.reload
         session_favorite.destroy
         @favorite
       end

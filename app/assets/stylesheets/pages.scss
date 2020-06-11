@@ -1,3 +1,47 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.message-bubble 
+{
+  padding: 10px 0px 10px 0px;
+}
+.message-bubble > *{
+  padding-left: 10px;
+}
+.panel-body{
+  padding: 0px;
+}
+.panel-heading{
+  background-color: #3d6da7 !important;
+  color: white !important;
+}
+.panel{
+  background: #161819;
+  box-shadow: none;
+}
+.username-chat{
+  color:#5ed4ff !important;
+  font-family: 'Russo One', sans-serif;
+}
+.body-chat{
+  word-break: break-all;
+}
+.input-chat{
+  width: 100% !important;
+
+}
+.form-chat{
+  margin-top: 20px;
+  width: 100% !important;
+}
+.btn-chat{
+  margin-top: 20px;
+}
+.chat{
+  overflow: auto;
+  height: 650px;
+}
+.sign-in-please{
+  margin-top: 20px;
+  text-align: center;
+}

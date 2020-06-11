@@ -1,4 +1,11 @@
 ActiveAdmin.register User do
+
+  filter :id
+  filter :username
+  filter :email
+  filter :blocked
+  filter :admin
+
   form do |f|
     f.inputs "User Details" do
     f.input :username
@@ -10,6 +17,25 @@ ActiveAdmin.register User do
   end
   f.actions
   end
+
+ index :title => "Пользователи" do
+    selectable_column
+    column :id
+    column :username
+    column :email
+    column :blocked
+    column :admin
+    column :created_at
+    column :updated_at
+    column do |user|
+      links = []
+      links << link_to("Открыть",  admin_user_path(user.id) , action: "show", id: user.id)
+      links << link_to("Изменить",  edit_admin_user_path(user.id), action: "edit", id: user.id)
+      links << link_to("Удалить", admin_user_path(user.id), method: :delete)
+      links.join(' ').html_safe
+    end
+  end
+
 
   create_or_edit = Proc.new {
     @user = User.where(id: params[:id]).first_or_create

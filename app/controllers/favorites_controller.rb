@@ -4,17 +4,14 @@ class FavoritesController < ApplicationController
      @favorite
   end
 
+
   def destroy
-    @favorite.destroy if @favorite.id == session[:favorite_id]
+    @favorite.destroy
     session[:favorite_id] = nil
     redirect_to root_path
   end
 
-private
-  def set_favorite
-    @favorite = Favorite.find(params[:id])
-  end
-
+  private
   def invalid_favorite
     logger.error("Attempt to access invalid favorite #{params[:id]}")
     redirect_to root_path, notice: "that favorite doesn't exist"
