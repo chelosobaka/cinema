@@ -59,10 +59,9 @@ class MoviesController < ApplicationController
     i = 0
     r = 0
     7.times do
-      if i == @movie.categories.size-1
+      if i > @movie.categories.size-1
         i = 0
       end
-      #if @movie.categories[i]
       random_movie = Movie.find(@movie.categories[i].movies.pluck(:id).sample)
       if @recommendation.include?(random_movie) || (random_movie == @movie)
         if r <= 7
