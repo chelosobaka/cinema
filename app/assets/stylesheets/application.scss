@@ -14,8 +14,6 @@
  *= require_self
  */
 @import "bootstrap";
-@import "tether";
-
 * {
   margin: 0;
   padding: 0;
@@ -314,4 +312,101 @@ hr{
 }
 .recommend-li{
   list-style: none;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  input {
+    border-color: red !important;
+  }
+  label {
+    color: red !important;
+  }
+}
+
+#error_explanation {
+  margin-top: 10px;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  border: 1px solid red !important;
+  border-radius: 3px;
+  background-color: #f794a3;
+  width: calc(80% - 22px);
+
+
+  h2 {
+    text-align: left;
+    padding: 10px 10px 10px 15px;
+    font-size: 20px;
+    margin: -7px -7px 0;
+    color: black;
+  }
+
+  ul {
+    padding-left: 15px;
+    margin-bottom: 20px;
+  }
+  li {
+    margin-left: 15px;
+    font-size: 16px;
+    list-style: disc;
+    color: black;
+  }
+}
+
+label {
+  display: block;
+}
+.channel-index-link{
+  font-size: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.room{
+  display: flex;
+  margin-left: 20px;
+  width: 100%;
+}
+.channel-index{
+  margin-top: 20px;
+  height: 250px;
+  overflow-y: auto;
+}
+.channel-index-title{
+  margin-right: 20px;
+}
+.p-author-link{
+  margin-left: 5px;
+}
+.btn-custom{
+  border-radius: 200px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.0em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  background-color: #838a90;
+  background-image: linear-gradient(180deg, #838a90, #414549);
+  text-shadow: #000 0 1px 0;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0px rgba(255, 255, 255, 0.2) inset;
+  border: solid 1px #484e53;
+  border-color: #484e53;
+  border-top-color: #616a71;
+  border-right-color: #484e53;
+  border-bottom-color: #363b3f;
+  border-left-color: #484e53;
+  color: white !important;
+}
+
+.border-right{
+  border-right: 1px solid black !important;
+}
+.hr-chat{
+  border-top: 1px solid black !important;
 }

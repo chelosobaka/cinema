@@ -1,11 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  channel: one
-  user: one
-  body: MyText
+  name: MyString
 
 two:
-  channel: two
-  user: two
-  body: MyText
+  name: MyString

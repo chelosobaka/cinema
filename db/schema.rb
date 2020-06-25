@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_200742) do
+ActiveRecord::Schema.define(version: 2020_06_18_214148) do
 
   create_table "categories", force: :cascade do |t|
     t.string "genre"
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 2020_06_01_200742) do
     t.integer "movie_id", null: false
     t.index ["category_id", "movie_id"], name: "index_categories_movies_on_category_id_and_movie_id"
     t.index ["movie_id", "category_id"], name: "index_categories_movies_on_movie_id_and_category_id"
+  end
+
+  create_table "channel_users", force: :cascade do |t|
+    t.integer "channel_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_channel_users_on_channel_id"
+    t.index ["user_id"], name: "index_channel_users_on_user_id"
+  end
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_channels_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -40,10 +57,12 @@ ActiveRecord::Schema.define(version: 2020_06_01_200742) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.text "body"
+    t.integer "channel_id"
     t.integer "user_id"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["channel_id"], name: "index_messages_on_channel_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 

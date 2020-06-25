@@ -4,6 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :favorite
+  has_many :channel_users, dependent: :destroy
+  has_many :channels, through: :channel_users
+  has_many :channel_author, class_name: 'Channel', foreign_key: :user_id, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   def account_active?
     !blocked

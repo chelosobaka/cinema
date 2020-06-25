@@ -12,6 +12,8 @@ ru:
       movie: "Фильм"
       favorite: "Любимый"
       category: "Категория"
+      channel: "Канал"
+      message: "Сообщение"
     attributes:
       user:
         username: "Отображаемое имя"
@@ -46,3 +48,5 @@ ru:
         user: "Пользователь"
         created_at: "Дата создания"
         updated_at: "Дата обновления"
+      channel:
+        name: "Название"

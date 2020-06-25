@@ -3,9 +3,7 @@
 one:
   channel: one
   user: one
-  body: MyText
 
 two:
   channel: two
   user: two
-  body: MyText

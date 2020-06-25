@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <h2 class="channel-index-title">Каналы</h2>
+    <%= form_tag channels_path, method: :get, class: 'form-inline my-2 my-md-0' do %>
+    <p>
+      <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search" %>
+    </p>
+  <% end %>
+  </div>
+</div>
+
+
+<div class="container channel-index">
+  <% @channels.each do |channel| %>
+    <div class="row">
+        <p><%= link_to channel.name, channel, class: "channel-index-link"%></p> <small><i> Автор: <%= channel.author.username %></i></small>
+        <% if channel.author == current_user %>
+          <p><%= link_to "изменить", edit_channel_path(channel), class: "p-author-link" %></p>
+          <p><%= link_to "удалить", channel_path(channel), method: :delete, class: "p-author-link" %></p>
+        <% end %>
+    </div>
+  <% end %>
+</div>
+<hr>
+<%= link_to 'Новый канал', new_channel_path %>
