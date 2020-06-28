@@ -5,9 +5,9 @@ class Movie < ApplicationRecord
   before_save :add_categories_to_movie, :default_values
 
   has_and_belongs_to_many :categories, dependent: :destroy
-
   has_many :line_items, dependent: :destroy
   has_many :favorites, through: :line_items
+  has_many :reviews, dependent: :destroy
 
   validates :global_id, uniqueness: true, presence: true
   validates :title_ru, presence: true

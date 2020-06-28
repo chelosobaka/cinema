@@ -63,5 +63,38 @@
     <div class="bkg-videoplayer">
       <iframe src="https://63.tvmovies.in/PwUgndLBDUPr?kp_id=<%=@movie.global_id%>" width="640" height="480" frameborder="0" allowfullscreen class="videoplayer"></iframe>
     </div>
+    <div class="review">
+      <h2>Отзывы:</h2>
+      <% @movie.reviews.each do |review| %>
+        <h5 class="review-user"><%= review.user.username %>:</h5>
+        <p class="review-body"><%= review.body %></p>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= form_with model: [@movie, @review] do |f|%>
+
+        <% if @review.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@review.errors.count, "error") %> prohibited this movie from being saved:</h2>
+
+            <ul>
+            <% @review.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+
+          <div class="form-group">
+            <%= f.text_area :body, placeholder: "Оставить комментарий", autocomplete: 'off', class: "form-control"%>
+          </div>
+          <div class="form-group">
+            <%= f.submit "Отправить" %>
+          </div>
+        <% end %>
+        <% else %>
+          <p><%= link_to "Войдите", new_user_session_path %>, чтобы оставить комментарий. </p>
+      <% end %>
+    </div>
   </div>
 </div>

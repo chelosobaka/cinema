@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_214148) do
+ActiveRecord::Schema.define(version: 2020_06_25_190141) do
 
   create_table "categories", force: :cascade do |t|
     t.string "genre"
@@ -84,6 +84,16 @@ ActiveRecord::Schema.define(version: 2020_06_18_214148) do
     t.integer "dislike"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "movie_id"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_reviews_on_movie_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "user_comments", force: :cascade do |t|

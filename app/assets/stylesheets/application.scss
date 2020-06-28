@@ -88,7 +88,7 @@ nav{
   background-color: #161819;
 }
 
-input{
+input, textarea{
   background-color: #161819 !important;
   color: #fff !important;
   box-shadow: none !important;
@@ -409,4 +409,13 @@ label {
 }
 .hr-chat{
   border-top: 1px solid black !important;
+}
+.review{
+  margin-top: 40px;
+}
+.review-user{
+  color: #E36E40;
+}
+.review-body{
+  margin-left: 20px;
 }

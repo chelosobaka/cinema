@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :channels, through: :channel_users
   has_many :channel_author, class_name: 'Channel', foreign_key: :user_id, dependent: :destroy
   has_many :messages, dependent: :destroy
-
+  has_many :reviews, dependent: :destroy
   def account_active?
     !blocked
   end

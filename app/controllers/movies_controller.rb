@@ -26,6 +26,7 @@ class MoviesController < ApplicationController
 
   def show
     set_rendom_movies
+    @review = Review.new
   end
 
   def upvote

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :reviews
   resources :channels do
     resource :channel_user
     resources :messages
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root "movies#index"
   resources :movies, only: [:index, :show] do
+    resources :reviews
     member do
       put "like" => "movies#upvote"
       put "dislike" => "movies#downvote"
