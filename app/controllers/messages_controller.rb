@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.create(user: current_user, channel: @channel, body: message_params[:body])
+    redirect_to request.referrer
   end
 
 
