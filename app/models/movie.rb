@@ -1,4 +1,3 @@
-
 class Movie < ApplicationRecord
 
   #before_save :parse_kinopoisk, on: :create
@@ -10,10 +9,10 @@ class Movie < ApplicationRecord
   has_many :reviews, dependent: :destroy
 
   validates :global_id, uniqueness: true, presence: true
-  validates :title_ru, presence: true
-  validates :title_en, presence: true
-  validates :country, presence: true
-  validates :year, presence: true
+  #validates :title_ru, presence: true
+  #validates :title_en, presence: true
+  #validates :country, presence: true
+  #validates :year, presence: true
 
   acts_as_votable
 

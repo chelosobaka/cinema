@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-
+  require 'net/http'
   before_action :set_movie, only: [:show, :upvote, :downvote]
 
 
@@ -57,16 +57,20 @@ class MoviesController < ApplicationController
 
   def set_rendom_movies
     @recommendation = []
-    i = 0
-    r = 0
+    i = 0 #category iteration in array
+    redo_count = 0
     7.times do
       if i > @movie.categories.size-1
         i = 0
       end
-      random_movie = Movie.find(@movie.categories[i].movies.pluck(:id).sample)
+      begin
+        random_movie = Movie.find(@movie.categories[i].movies.pluck(:id).sample)
+      rescue NoMethodError => e
+        random_movie = Movie.find(Movie.pluck(:id).sample)
+      end
       if @recommendation.include?(random_movie) || (random_movie == @movie)
-        if r <= 7
-          r += 1
+        if redo_count <= 7
+          redo_count += 1
           redo
         else
           break

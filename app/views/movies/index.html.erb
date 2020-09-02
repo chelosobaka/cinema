@@ -13,6 +13,7 @@
     <% @movies.each do |movie| %>
      <div class="row movie-card">
       <div class="col-lg-4">
+
         <div>
           <%= image_tag("#{movie.image_link}", width: "100%")%>
           <%= render partial: 'movies/votes', :locals => {:movie => movie, :session => @session} %>
@@ -32,12 +33,12 @@
                 <%= link_to "", line_item_path(movie), method: :delete, class: "fa fa-minus bookmark link-danger" %>
                <% else %>
                 <%= link_to "", line_items_path(movie_id: movie), method: :post, class: "fa fa-plus bookmark link-succes" %>
-               <%end%>
+               <% end %>
             </div>
           </div>
           <table class="movie-info">
             <tbody>
-              <tr>
+              <tr class="index-th-mh">
                 <th scope="row">Страна:</th>
                 <td><%= movie.country %></td>
               </tr>
@@ -45,10 +46,12 @@
                 <th scope="row">Жанр:</th>
                 <td><%= genre_link(movie) %></td>
               </tr>
-              <tr>
-                <th scope="row">Продолжительность:</th>
-                <td><%= movie.duration%> мин. / <%=Time.at(movie.duration.to_i*60).utc.strftime("%H:%M")%></td>
-              </tr>
+              <% if movie.duration.present? %>
+                <tr>
+                  <th scope="row">Продолжительность:</th>
+                  <td><%= movie.duration%> мин. / <%=Time.at(movie.duration.to_i*60).utc.strftime("%H:%M")%></td>
+                </tr>
+              <% end %>
               <tr>
                 <th scope="row">Год:</th>
                 <td><%= movie.year %></td>

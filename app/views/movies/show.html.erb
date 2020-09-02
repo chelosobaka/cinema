@@ -28,18 +28,24 @@
           <th scope="row">Год:</th>
           <td><%= @movie.year %></td>
         </tr>
-        <tr>
-          <th scope="row">Режиссёр:</th>
-          <td><%= @movie.producer %></td>
-        </tr>
-        <tr>
-          <th scope="row">В главной роли:</th>
-          <td><%= @movie.acter %></td>
-        </tr>
-        <tr>
-          <th scope="row">Продолжительность:</th>
-          <td class="td2"><%=@movie.duration%> мин. / <%=Time.at(@movie.duration.to_i*60).utc.strftime("%H:%M")%></td>
-        </tr>
+        <% unless @movie.producer.nil? %>
+          <tr>
+            <th scope="row">Режиссёр:</th>
+            <td><%= @movie.producer %></td>
+          </tr>
+        <% end %>
+        <% unless @movie.acter.empty? %>
+          <tr>
+            <th scope="row">В главной роли:</th>
+            <td><%= @movie.acter %></td>
+          </tr>
+        <% end %>
+        <% if @movie.duration.present? %>
+          <tr>
+            <th scope="row">Продолжительность:</th>
+            <td class="td2"><%=@movie.duration%> мин. / <%=Time.at(@movie.duration.to_i*60).utc.strftime("%H:%M")%></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
     <hr>
