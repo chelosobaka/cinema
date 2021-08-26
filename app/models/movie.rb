@@ -35,7 +35,51 @@ class Movie < ApplicationRecord
    self.like ||= 0
    self.dislike ||= 0
   end
-=begin private
+
+  def self.first_start
+    Category.create!([
+      {genre: "биография"},
+      {genre: "боевик"},
+      {genre: "вестерн"},
+      {genre: "военный"},
+      {genre: "детектив"},
+      {genre: "документальный"},
+      {genre: "драма"},
+      {genre: "исторический"},
+      {genre: "комедия"},
+      {genre: "криминал"},
+      {genre: "мелодрама"},
+      {genre: "мультфильм"},
+      {genre: "приключения"},
+      {genre: "сериал"},
+      {genre: "спорт"},
+      {genre: "триллер"},
+      {genre: "ужасы"},
+      {genre: "фантастика"},
+      {genre: "фентези"}
+    ])
+  
+    require "json"
+
+    file = File.read(File.join(Rails.root, "db", "lordfilm.json"))
+    data = JSON.parse(file)
+    data.each do |movie|
+      Movie.create(
+        global_id:    movie["kp_id"],
+        title_ru:     movie["title_ru"],
+        title_en:     movie["title_en"],
+        year:         movie["year"],
+        acter:        movie["actors"],
+        producer:     movie["producer"],
+        country:      movie["country"],
+        genre:        movie["genre"],
+        description:  movie["about"],
+        image_link:   movie["poster"]
+      ) 
+    end
+  end
+
+=begin
 
     def parse_kinopoisk
       film = KpApi::Film.new(self.global_id)
@@ -75,22 +119,5 @@ class Movie < ApplicationRecord
       end
     end
 end
-
-
-   :global_id
-   :title_ru
-   :title_en
-   :country
-   :genre
-   :duration
-   :description
-   :producer
-   :acter
-   :year
-   :image_link
-   :video_link
-   :trailer_link
-   :like
-   :dislike
 =end
 end

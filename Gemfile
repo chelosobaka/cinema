@@ -37,6 +37,8 @@ group :development, :test do
   gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -77,4 +79,4 @@ gem 'rails-i18n'
 gem 'acts_as_votable' , '~> 0.12.0'
 #gem 'kp_api'
 gem 'simple_form'
-
+gem 'json'
