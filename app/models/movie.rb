@@ -70,10 +70,10 @@ class Movie < ApplicationRecord
         title_ru:     movie["title_ru"],
         title_en:     movie["title_en"],
         year:         movie["year"],
-        acter:        movie["actors"],
+        acter:        movie["actors"].join(", "),
         producer:     movie["producer"],
-        country:      movie["country"],
-        genre:        movie["genre"],
+        country:      movie["country"].join(", "),
+        genre:        movie["genre"].join(", "),
         description:  movie["about"],
         image_link:   movie["poster"]
       )
