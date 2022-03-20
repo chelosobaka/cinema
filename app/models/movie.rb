@@ -36,7 +36,7 @@ class Movie < ApplicationRecord
    self.dislike ||= 0
   end
 
-  def self.first_start
+  def self.first_start(limit = nil)
     Category.create!([
       {genre: "биография"},
       {genre: "боевик"},
@@ -58,11 +58,12 @@ class Movie < ApplicationRecord
       {genre: "фантастика"},
       {genre: "фентези"}
     ])
-  
+
     require "json"
 
     file = File.read(File.join(Rails.root, "db", "lordfilm.json"))
-    data = JSON.parse(file)
+    data = JSON.parse(file).take(limit) if limit.present?
+    data = data.take(limit) if limit.present?
     data.each do |movie|
       Movie.create(
         global_id:    movie["kp_id"],
@@ -75,7 +76,7 @@ class Movie < ApplicationRecord
         genre:        movie["genre"],
         description:  movie["about"],
         image_link:   movie["poster"]
-      ) 
+      )
     end
   end
 
