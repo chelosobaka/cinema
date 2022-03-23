@@ -7,7 +7,7 @@ class FavoritesController < ApplicationController
 
   def destroy
     @favorite.destroy
-    session[:favorite_id] = nil
+    cookies.delete :favorite_id
     redirect_to root_path
   end
 
