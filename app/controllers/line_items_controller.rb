@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentFavorite
-  before_action :set_favorite, only: [:create, :destroy]
+  before_action :set_favorite, only: %i[create destroy]
 
   def create
     chosen_movie = Movie.find(params[:movie_id])
@@ -19,5 +19,4 @@ class LineItemsController < ApplicationController
     @line_item.destroy
     redirect_to request.referrer
   end
-
 end

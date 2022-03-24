@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def authenticate_active_admin_user!
     authenticate_user!
     unless current_user.admin?
-      flash[:alert] = "Unauthorized Access!"
+      flash[:alert] = 'Unauthorized Access!'
       redirect_to root_path
     end
   end
@@ -19,7 +19,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
-
-
 end
-

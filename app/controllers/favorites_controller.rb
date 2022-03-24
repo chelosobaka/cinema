@@ -1,9 +1,8 @@
 class FavoritesController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_favorite
   def show
-     @favorite
+    @favorite
   end
-
 
   def destroy
     @favorite.destroy
@@ -12,9 +11,9 @@ class FavoritesController < ApplicationController
   end
 
   private
+
   def invalid_favorite
     logger.error("Attempt to access invalid favorite #{params[:id]}")
     redirect_to root_path, notice: "that favorite doesn't exist"
   end
-
 end

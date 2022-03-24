@@ -1,15 +1,14 @@
 class MoviesController < ApplicationController
   require 'net/http'
-  before_action :set_movie, only: [:show, :upvote, :downvote]
-
+  before_action :set_movie, only: %i[show upvote downvote]
 
   def index
     if params[:category].blank? && params[:search].blank?
       @movies = Movie.all.page(params[:page]).per(10)
     elsif params[:search].present?
       search = params[:search]
-      movies = Movie.where("title_ru LIKE ? OR title_ru LIKE ? OR lower(title_en) LIKE ?",
-        "%#{search.capitalize}%", "%#{search.downcase}%", "%#{search.downcase}%")
+      movies = Movie.where('title_ru LIKE ? OR title_ru LIKE ? OR lower(title_en) LIKE ?',
+                           "%#{search.capitalize}%", "%#{search.downcase}%", "%#{search.downcase}%")
       @movies = movies.page(params[:page]).per(10)
     else
       @category = Category.find(params[:category])
@@ -17,9 +16,7 @@ class MoviesController < ApplicationController
     end
 
     @session = VoterSession.find_by(session_id: request.session_options[:id].to_s)
-    if @session == nil
-      @session = VoterSession.create(session_id: request.session_options[:id].to_s)
-    end
+    @session = VoterSession.create(session_id: request.session_options[:id].to_s) if @session.nil?
 
     @categories = Category.all
   end
@@ -31,38 +28,32 @@ class MoviesController < ApplicationController
 
   def upvote
     @session = VoterSession.find_by(session_id: request.session_options[:id].to_s)
-    if @session == nil
-      @session = VoterSession.create(session_id: request.session_options[:id].to_s)
-    end
+    @session = VoterSession.create(session_id: request.session_options[:id].to_s) if @session.nil?
     @movie.upvote_by @session
-      respond_to do |format|
-      format.html {redirect_to :back }
+    respond_to do |format|
+      format.html { redirect_to :back }
       format.json { render json: { count: @movie.liked_count } }
-      format.js   { render :layout => false }
+      format.js   { render layout: false }
     end
   end
 
   def downvote
     @session = VoterSession.find_by(session_id: request.session_options[:id].to_s)
-    if @session == nil
-      @session = VoterSession.create(session_id: request.session_options[:id].to_s)
-    end
+    @session = VoterSession.create(session_id: request.session_options[:id].to_s) if @session.nil?
     @movie.downvote_by @session
     respond_to do |format|
-      format.html {redirect_to :back }
+      format.html { redirect_to :back }
       format.json { render json: { count: @movie.disliked_count } }
-      format.js   { render :layout => false }
+      format.js   { render layout: false }
     end
   end
 
   def set_rendom_movies
     @recommendation = []
-    i = 0 #category iteration in array
+    i = 0 # category iteration in array
     redo_count = 0
     7.times do
-      if i > @movie.categories.size-1
-        i = 0
-      end
+      i = 0 if i > @movie.categories.size - 1
       begin
         random_movie = Movie.find(@movie.categories[i].movies.pluck(:id).sample)
       rescue NoMethodError => e
@@ -83,8 +74,8 @@ class MoviesController < ApplicationController
   end
 
   private
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
 
+  def set_movie
+    @movie = Movie.find(params[:id])
+  end
 end

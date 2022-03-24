@@ -14,8 +14,7 @@ class ChannelUsersController < ApplicationController
 
   private
 
-    def set_channel
-      @channel = Channel.find(params[:channel_id])
-    end
-
+  def set_channel
+    @channel = Channel.find(params[:channel_id])
+  end
 end

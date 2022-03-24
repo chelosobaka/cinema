@@ -4,13 +4,13 @@ module ParserLordfilm
   require 'net/http'
   require 'json'
 
-  URL_LORDFILM = "http://f2.llordfilm.tv/"
+  URL_LORDFILM = 'http://f2.llordfilm.tv/'
 
   def parse_page(url_page)
     html = open(url_page)
     doc = Nokogiri::HTML(html)
     links_array = []
-    doc.css('div.short div.short-in a').each{|x| links_array << "URL_LORDFILM" + x['href']}
+    doc.css('div.short div.short-in a').each { |x| links_array << 'URL_LORDFILM' + x['href'] }
     links_array
   end
 
@@ -22,19 +22,19 @@ module ParserLordfilm
     kp_id = doc.css('iframe').first.attributes['src'].value.match(/\d+$/).to_s
     title_ru = doc.css('h2 span').first.text
 
-      if doc.css('ul#s-list li').size > 5 #русские фильмы не имеют анг названия
-        title_en = doc.css('ul#s-list li')[0].css('span')[1].text
-        size = 4
-      else
-        size = 5
-        title_en = nil
-      end
+    if doc.css('ul#s-list li').size > 5 # русские фильмы не имеют анг названия
+      title_en = doc.css('ul#s-list li')[0].css('span')[1].text
+      size = 4
+    else
+      size = 5
+      title_en = nil
+    end
 
-    year = doc.css('ul#s-list li')[5-size].css('span')[1].text
-    actors = doc.css('ul#s-list li')[6-size].css('span')[1].text.split(',').each{|w| w.lstrip!}
-    producer = doc.css('ul#s-list li')[7-size].css('span')[1].text
-    country = doc.css('ul#s-list li')[8-size].children[1].text.split(',').each{|w| w.lstrip!}
-    genre =  doc.css('ul#s-list li')[9-size].css('span')[1].text.split(',').each{|w| w.lstrip!}
+    year = doc.css('ul#s-list li')[5 - size].css('span')[1].text
+    actors = doc.css('ul#s-list li')[6 - size].css('span')[1].text.split(',').each { |w| w.lstrip! }
+    producer = doc.css('ul#s-list li')[7 - size].css('span')[1].text
+    country = doc.css('ul#s-list li')[8 - size].children[1].text.split(',').each { |w| w.lstrip! }
+    genre = doc.css('ul#s-list li')[9 - size].css('span')[1].text.split(',').each { |w| w.lstrip! }
     about = doc.css('div#s-desc').text.strip
     poster = "http://u5.lordfilm7.tv#{doc.css('div.fposter img').first.attributes['src'].value}"
 
@@ -53,13 +53,11 @@ module ParserLordfilm
     }
   end
 
-
-
   def start(first_page, last_page)
     if first_page > last_page
-      raise "The first parameter cannot be greater than the second."
+      raise 'The first parameter cannot be greater than the second.'
     elsif first_page < 0 || last_page < 0
-      raise "Parameter must be greater than 0."
+      raise 'Parameter must be greater than 0.'
     end
 
     (first_page..last_page).each do |page|
@@ -67,9 +65,9 @@ module ParserLordfilm
         begin
           hash_with_movie = parse_film(url)
         rescue NoMethodError => e
-          puts "NoMethodError."
+          puts 'NoMethodError.'
           next
-        rescue => e
+        rescue StandardError => e
           puts e
           next
         end
@@ -80,35 +78,32 @@ module ParserLordfilm
     end
   end
 
-=begin
-  def start_with_rails
-    array_with_movies = []
-    start do |hash_with_movie|
-      array_with_movies << hash_with_movie
-    end
-    array_with_movies
-  end
-
-  def write_json(hash_with_movie, file_name = "lordfilm")
-    File.open(file_name, "a") do |f|
-      f.write(JSON.pretty_generate(hash_with_movie))
-    end
-    puts "Movie: #{hash_with_movie[:title_ru]} writed to json."
-  end
-=end
+  #   def start_with_rails
+  #     array_with_movies = []
+  #     start do |hash_with_movie|
+  #       array_with_movies << hash_with_movie
+  #     end
+  #     array_with_movies
+  #   end
+  #
+  #   def write_json(hash_with_movie, file_name = "lordfilm")
+  #     File.open(file_name, "a") do |f|
+  #       f.write(JSON.pretty_generate(hash_with_movie))
+  #     end
+  #     puts "Movie: #{hash_with_movie[:title_ru]} writed to json."
+  #   end
 
   def start_without_rails(file_name, first_page, last_page)
-    File.open("#{file_name}.json", "a+") do |f|
+    File.open("#{file_name}.json", 'a+') do |f|
       f.write("[\n")
       start(first_page, last_page) do |hash_with_movie|
-        f.write("  ")
+        f.write('  ')
         f.write(JSON.pretty_generate(hash_with_movie))
         f.write(",\n")
         puts "Movie: #{hash_with_movie[:title_ru]} completed."
       end
-        f.truncate(f.size - 2)
-        f.write("\n]")
+      f.truncate(f.size - 2)
+      f.write("\n]")
     end
   end
 end
-

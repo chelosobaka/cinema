@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Ddm"
+  config.site_title = 'Ddm'
   config.authentication_method = :authenticate_active_admin_user!
   config.current_user_method = :current_user
   config.logout_link_path = :destroy_user_session_path
@@ -14,14 +14,14 @@ ActiveAdmin.setup do |config|
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
-  config.site_title_link = "/"
+  config.site_title_link = '/'
 
   # Set an optional image to be displayed for the header
   # instead of a string (overrides :site_title)
   #
   # Note: Aim for an image that's 21px high so it fits in the header.
   #
-  #config.site_title_image = "head.png"
+  # config.site_title_image = "head.png"
 
   # == Default Namespace
   #
@@ -59,7 +59,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
-  #config.authentication_method = :authenticate_admin_user!
+  # config.authentication_method = :authenticate_admin_user!
 
   # == User Authorization
   #
@@ -96,7 +96,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # (within the application controller) to return the currently logged in user.
-  #config.current_user_method = :current_admin_user
+  # config.current_user_method = :current_admin_user
 
   # == Logging Out
   #
@@ -108,7 +108,7 @@ ActiveAdmin.setup do |config|
   # will call the method to return the path.
   #
   # Default:
-  #config.logout_link_path = :destroy_admin_user_session_path
+  # config.logout_link_path = :destroy_admin_user_session_path
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
@@ -148,7 +148,7 @@ ActiveAdmin.setup do |config|
   #
   # Enable and disable Batch Actions
   #
-  #config.batch_actions = true
+  # config.batch_actions = true
 
   # == Controller Filters
   #
@@ -162,7 +162,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+  config.filter_attributes = %i[encrypted_password password password_confirmation]
 
   # == Localize Date/Time Format
   #
@@ -173,7 +173,7 @@ ActiveAdmin.setup do |config|
   # You can run `bin/rails runner 'puts I18n.t("date.formats")'` to see the
   # available formats in your application.
   #
-  #config.localize_format = :long
+  # config.localize_format = :long
 
   # == Setting a Favicon
   #

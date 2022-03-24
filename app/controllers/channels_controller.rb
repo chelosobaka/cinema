@@ -1,14 +1,14 @@
 class ChannelsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :set_channel, only: [:show, :edit, :update, :destroy]
+  before_action :set_channel, only: %i[show edit update destroy]
 
   # GET /channels
   # GET /channels.json
   def index
     if params[:search].present?
       search = params[:search]
-      @channels = Channel.where("name LIKE ? OR name LIKE ?", "%#{search.capitalize}%",
-       "%#{search.downcase}%")
+      @channels = Channel.where('name LIKE ? OR name LIKE ?', "%#{search.capitalize}%",
+                                "%#{search.downcase}%")
     else
       @channels = Channel.all
     end
@@ -26,8 +26,7 @@ class ChannelsController < ApplicationController
   end
 
   # GET /channels/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /channels
   # POST /channels.json
@@ -70,13 +69,14 @@ class ChannelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_channel
-      @channel = Channel.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def channel_params
-      params.require(:channel).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_channel
+    @channel = Channel.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def channel_params
+    params.require(:channel).permit(:name)
+  end
 end

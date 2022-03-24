@@ -7,12 +7,12 @@ class MessagesController < ApplicationController
     redirect_to request.referrer
   end
 
-
   private
 
   def set_channel
     @channel = Channel.find(params[:channel_id])
   end
+
   def message_params
     params.require(:message).permit(:body)
   end

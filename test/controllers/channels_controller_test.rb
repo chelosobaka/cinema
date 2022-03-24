@@ -5,40 +5,40 @@ class ChannelsControllerTest < ActionDispatch::IntegrationTest
     @channel = channels(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get channels_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_channel_url
     assert_response :success
   end
 
-  test "should create channel" do
+  test 'should create channel' do
     assert_difference('Channel.count') do
-      post channels_url, params: { channel: {  } }
+      post channels_url, params: { channel: {} }
     end
 
     assert_redirected_to channel_url(Channel.last)
   end
 
-  test "should show channel" do
+  test 'should show channel' do
     get channel_url(@channel)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_channel_url(@channel)
     assert_response :success
   end
 
-  test "should update channel" do
-    patch channel_url(@channel), params: { channel: {  } }
+  test 'should update channel' do
+    patch channel_url(@channel), params: { channel: {} }
     assert_redirected_to channel_url(@channel)
   end
 
-  test "should destroy channel" do
+  test 'should destroy channel' do
     assert_difference('Channel.count', -1) do
       delete channel_url(@channel)
     end
